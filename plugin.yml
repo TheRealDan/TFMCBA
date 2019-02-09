@@ -1,0 +1,11 @@
+name: TFMCBA
+version: 1.0
+main: me.therealdan.tfmcba.TFMCBA
+author: TheRealDan
+
+depend: [TheForceMC, BattleArena]
+
+commands:
+  TFMCBA:
+    description: TFMCCommand
+    permission: tfmcba.commands.tfmcba
