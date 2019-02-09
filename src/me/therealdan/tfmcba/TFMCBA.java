@@ -4,6 +4,7 @@ import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.SetupHandler;
 import me.therealdan.battlearena.util.Icon;
 import me.therealdan.tfmcba.battles.ffa.FFASetup;
+import me.therealdan.tfmcba.battles.team.TeamSetup;
 import me.therealdan.tfmcba.commands.TFMCBACommand;
 import me.therealdan.tfmcba.listeners.BattleListener;
 import me.therealdan.tfmcba.listeners.TrashCanListener;
@@ -25,7 +26,7 @@ public class TFMCBA extends JavaPlugin {
         Statistics.load();
 
         BattleType.register("FFA", Icon.build(Material.IRON_SWORD, 0, false, TheForceMC.MAIN + "FFA", "&7All against all"), new FFASetup());
-        BattleType.register("Team", Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + "Team Battle", "&7Team against team"), new FFASetup());
+        BattleType.register("Team", Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + "Team Battle", "&7Team against team"), new TeamSetup());
         SetupHandler.setDefault(BattleType.byName("FFA").getSetup());
 
         getServer().getPluginManager().registerEvents(StatisticsHandler.getInstance(), this);
