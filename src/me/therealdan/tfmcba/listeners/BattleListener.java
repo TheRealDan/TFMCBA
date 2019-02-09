@@ -1,10 +1,12 @@
 package me.therealdan.tfmcba.listeners;
 
 import me.therealdan.battlearena.events.*;
+import me.therealdan.battlearena.mechanics.lobby.Lobby;
 import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.team.Team;
 import me.therealdan.tfmcba.settings.Health;
+import net.theforcemc.events.GunShootEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -67,5 +69,15 @@ public class BattleListener implements Listener {
     @EventHandler
     public void onRespawn(BattleRespawnEvent event) {
 
+    }
+
+    @EventHandler
+    public void onGunShoot(GunShootEvent event) {
+        if (!(event.getEntity() instanceof Player)) return;
+        Player player = (Player) event.getEntity();
+
+        if (Lobby.getInstance().contains(player)) {
+            event.setCancelled(true);
+        }
     }
 }
