@@ -7,6 +7,8 @@ import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.team.Team;
 import me.therealdan.tfmcba.settings.Health;
 import net.theforcemc.events.GunShootEvent;
+import net.theforcemc.mechanics.equipment.shootable.flamethrower.FlamethrowerHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -58,7 +60,10 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onDamage(BattleDamageEvent event) {
-
+        if (event.getDamageCause().toString().contains("FIRE")) {
+            Player attacker = Bukkit.getPlayer(FlamethrowerHandler.getLastFireDamage(event.getVictim().getUniqueId()));
+            event.setAttacker(attacker);
+        }
     }
 
     @EventHandler
