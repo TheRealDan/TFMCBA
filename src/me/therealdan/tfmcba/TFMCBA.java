@@ -25,6 +25,7 @@ public class TFMCBA extends JavaPlugin {
         Statistics.load();
 
         BattleType.register("FFA", Icon.build(Material.IRON_SWORD, 0, false, TheForceMC.MAIN + "FFA", "&7All against all"), new FFASetup());
+        BattleType.register("Team", Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + "Team Battle", "&7Team against team"), new FFASetup());
         SetupHandler.setDefault(BattleType.byName("FFA").getSetup());
 
         getServer().getPluginManager().registerEvents(StatisticsHandler.getInstance(), this);

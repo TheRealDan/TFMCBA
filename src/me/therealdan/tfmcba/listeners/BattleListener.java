@@ -3,6 +3,7 @@ package me.therealdan.tfmcba.listeners;
 import me.therealdan.battlearena.events.*;
 import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.tfmcba.battles.ffa.FFA;
+import me.therealdan.tfmcba.battles.team.Team;
 import me.therealdan.tfmcba.settings.Health;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +18,9 @@ public class BattleListener implements Listener {
                 return;
             case "FFA":
                 event.getSettings().apply(new FFA(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings()));
+                break;
+            case "Team":
+                event.getSettings().apply(new Team(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings()));
                 break;
         }
 
