@@ -7,7 +7,7 @@ import me.therealdan.battlearena.mechanics.setup.settings.BattleDuration;
 import me.therealdan.battlearena.mechanics.setup.settings.GracePeriod;
 import me.therealdan.battlearena.mechanics.setup.settings.Map;
 import me.therealdan.battlearena.mechanics.setup.settings.Open;
-import me.therealdan.tfmcba.settings.Health;
+import me.therealdan.tfmcba.battles.settings.Health;
 
 public class TeamSetup extends Setup {
 

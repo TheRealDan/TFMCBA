@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.settings;
+package me.therealdan.tfmcba.battles.settings;
 
 import me.therealdan.battlearena.mechanics.battle.Battle;
 import me.therealdan.battlearena.mechanics.setup.Setting;
