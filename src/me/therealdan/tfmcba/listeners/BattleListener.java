@@ -7,13 +7,21 @@ import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.team.Team;
 import me.therealdan.tfmcba.settings.Health;
 import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
+import net.theforcemc.events.GunDamageEvent;
 import net.theforcemc.events.GunShootEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class BattleListener implements Listener {
+
+    private HashMap<UUID, UUID> lastPoisonDamage = new HashMap<>();
+    private HashMap<UUID, UUID> lastFallDamage = new HashMap<>();
 
     @EventHandler
     public void onCreate(BattleCreateEvent event) {
@@ -64,6 +72,19 @@ public class BattleListener implements Listener {
             Player attacker = Bukkit.getPlayer(FlamethrowerHandler.getLastFireDamage(event.getVictim().getUniqueId()));
             event.setAttacker(attacker);
         }
+
+        if (event.getDamageCause().equals(EntityDamageEvent.DamageCause.FALL)) {
+            if (lastFallDamage.containsKey(event.getVictim().getUniqueId())) {
+                event.setAttacker(Bukkit.getPlayer(lastFallDamage.get(event.getVictim().getUniqueId())));
+                lastFallDamage.remove(event.getVictim().getUniqueId());
+            }
+        }
+
+        if (event.getDamageCause().equals(EntityDamageEvent.DamageCause.POISON)) {
+            if (lastPoisonDamage.containsKey(event.getVictim().getUniqueId())) {
+                event.setAttacker(Bukkit.getPlayer(lastPoisonDamage.get(event.getVictim().getUniqueId())));
+            }
+        }
     }
 
     @EventHandler
@@ -83,6 +104,17 @@ public class BattleListener implements Listener {
 
         if (Lobby.getInstance().contains(player)) {
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onGunDamage(GunDamageEvent event) {
+        if (event.getGun().getID().equalsIgnoreCase("dartgun")) {
+            lastPoisonDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
+        }
+
+        if (event.getGun().getKnockback() > 0) {
+            lastFallDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
         }
     }
 }
