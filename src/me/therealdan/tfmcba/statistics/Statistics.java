@@ -1,6 +1,6 @@
 package me.therealdan.tfmcba.statistics;
 
-import net.theforcemc.mechanics.equipment.shootable.gun.Gun;
+import net.theforcemc.equipment.shootable.gun.Gun;
 import net.theforcemc.util.YamlFile;
 import org.bukkit.entity.Player;
 

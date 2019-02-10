@@ -4,7 +4,7 @@ import me.therealdan.battlearena.mechanics.statistics.Statistics;
 import me.therealdan.battlearena.util.Icon;
 import me.therealdan.tfmcba.TFMCBA;
 import net.theforcemc.TheForceMC;
-import net.theforcemc.mechanics.equipment.shootable.gun.Gun;
+import net.theforcemc.equipment.shootable.gun.Gun;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
