@@ -38,10 +38,10 @@ public class BattleListener implements Listener {
             default:
                 return;
             case "FFA":
-                event.getSettings().apply(new FFA(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings()));
+                new FFA(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
                 break;
             case "Team":
-                event.getSettings().apply(new Team(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings()));
+                new Team(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
                 break;
         }
 
