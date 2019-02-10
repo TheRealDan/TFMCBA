@@ -20,8 +20,16 @@ import java.util.UUID;
 
 public class BattleListener implements Listener {
 
+    private static BattleListener battleListener;
+
     private HashMap<UUID, UUID> lastPoisonDamage = new HashMap<>();
     private HashMap<UUID, UUID> lastFallDamage = new HashMap<>();
+
+    private boolean canShootInLobby = false;
+
+    public BattleListener() {
+        battleListener = this;
+    }
 
     @EventHandler
     public void onCreate(BattleCreateEvent event) {
@@ -102,7 +110,7 @@ public class BattleListener implements Listener {
         if (!(event.getEntity() instanceof Player)) return;
         Player player = (Player) event.getEntity();
 
-        if (Lobby.getInstance().contains(player)) {
+        if (!canShootInLobby() && Lobby.getInstance().contains(player)) {
             event.setCancelled(true);
         }
     }
@@ -116,5 +124,13 @@ public class BattleListener implements Listener {
         if (event.getGun().getKnockback() > 0) {
             lastFallDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
         }
+    }
+
+    public static void setCanShootInLobby(boolean canShootInLobby) {
+        battleListener.canShootInLobby = canShootInLobby;
+    }
+
+    public static boolean canShootInLobby() {
+        return battleListener.canShootInLobby;
     }
 }
