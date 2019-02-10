@@ -33,13 +33,13 @@ public class Competitive extends Setting {
 
     @Override
     public Material getMaterial() {
-        return isCompetitive() ? Material.SHEARS : Material.WOODEN_DOOR;
+        return Material.SHEARS;
     }
 
     @Override
     public List<String> getDescription() {
         List<String> description = new ArrayList<>();
-        description.add("&7Enabled: " + (isCompetitive() ? "&aCompetitive" : "&cfalse"));
+        description.add("&7Enabled: " + (isCompetitive() ? "&atrue" : "&cfalse"));
         if (isCompetitive()) description.add("&7Affects KDR rating");
         if (!isCompetitive()) description.add("&7Doesn't affect KDR rating");
         return description;
