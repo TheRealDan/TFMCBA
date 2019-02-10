@@ -6,6 +6,7 @@ import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.settings.Health;
 import me.therealdan.tfmcba.battles.team.Team;
+import net.theforcemc.equipment.armor.ArmorHandler;
 import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
 import net.theforcemc.events.GunDamageEvent;
 import net.theforcemc.events.GunShootEvent;
@@ -97,12 +98,12 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onDeath(BattleDeathEvent event) {
-
+        ArmorHandler.setJetpackFuel(event.getPlayer().getUniqueId(), Long.MAX_VALUE);
     }
 
     @EventHandler
     public void onRespawn(BattleRespawnEvent event) {
-
+        ArmorHandler.setJetpackFuel(event.getPlayer().getUniqueId(), Long.MAX_VALUE);
     }
 
     @EventHandler
