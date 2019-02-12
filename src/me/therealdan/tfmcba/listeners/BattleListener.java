@@ -4,17 +4,21 @@ import me.therealdan.battlearena.events.*;
 import me.therealdan.battlearena.mechanics.lobby.Lobby;
 import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.tfmcba.battles.ffa.FFA;
+import me.therealdan.tfmcba.battles.settings.GunRestrictions;
 import me.therealdan.tfmcba.battles.settings.Health;
 import me.therealdan.tfmcba.battles.team.Team;
 import net.theforcemc.equipment.armor.ArmorHandler;
 import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
+import net.theforcemc.equipment.shootable.gun.Gun;
 import net.theforcemc.events.GunDamageEvent;
 import net.theforcemc.events.GunShootEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -25,6 +29,8 @@ public class BattleListener implements Listener {
 
     private HashMap<UUID, UUID> lastPoisonDamage = new HashMap<>();
     private HashMap<UUID, UUID> lastFallDamage = new HashMap<>();
+
+    private HashMap<UUID, HashMap<Integer, ItemStack>> items = new HashMap<>();
 
     private boolean canShootInLobby = false;
 
@@ -65,6 +71,23 @@ public class BattleListener implements Listener {
                 Health health = (Health) setting;
                 health.apply(event.getPlayer());
             }
+            if (setting instanceof GunRestrictions) {
+                Player player = event.getPlayer();
+                GunRestrictions gunRestrictions = (GunRestrictions) setting;
+                HashMap<Integer, ItemStack> items = new HashMap<>();
+                int slot = 0;
+                for (ItemStack itemStack : player.getInventory().getContents()) {
+                    Gun gun = Gun.byItemStack(itemStack);
+                    if (gun != null) {
+                        if (!gunRestrictions.isAllowed(gun)) {
+                            items.put(slot, itemStack);
+                            player.getInventory().setItem(slot, new ItemStack(Material.AIR));
+                        }
+                    }
+                    slot++;
+                }
+                this.items.put(player.getUniqueId(), items);
+            }
         }
     }
 
@@ -73,6 +96,19 @@ public class BattleListener implements Listener {
         Player player = event.getPlayer();
         player.setMaxHealth(20);
         player.setHealthScale(20);
+
+        for (Setting setting : event.getBattle().getSettings().values()) {
+            if (setting instanceof GunRestrictions) {
+                HashMap<Integer, ItemStack> items = this.items.get(player.getUniqueId());
+                for (int slot : items.keySet()) {
+                    if (player.getInventory().getItem(slot) == null || player.getInventory().getItem(slot).getType().equals(Material.AIR)) {
+                        player.getInventory().setItem(slot, items.get(slot));
+                    } else {
+                        player.getInventory().addItem(items.get(slot));
+                    }
+                }
+            }
+        }
     }
 
     @EventHandler
