@@ -32,7 +32,7 @@ public class BattleListener implements Listener {
 
     private HashMap<UUID, HashMap<Integer, ItemStack>> items = new HashMap<>();
 
-    private boolean canShootInLobby = false;
+    private boolean canShootInLobby = true;
 
     public BattleListener() {
         battleListener = this;
