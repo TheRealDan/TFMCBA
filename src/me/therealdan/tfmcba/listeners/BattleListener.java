@@ -4,6 +4,7 @@ import me.therealdan.battlearena.events.*;
 import me.therealdan.battlearena.mechanics.lobby.Lobby;
 import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.battlearena.util.PlayerHandler;
+import me.therealdan.tfmcba.battles.chaos.Chaos;
 import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.gungame.GunGame;
 import me.therealdan.tfmcba.battles.settings.GunRestrictions;
@@ -53,6 +54,9 @@ public class BattleListener implements Listener {
                 break;
             case "Gun Game":
                 new GunGame(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
+                break;
+            case "Chaos":
+                new Chaos(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
                 break;
         }
 
@@ -141,7 +145,7 @@ public class BattleListener implements Listener {
     public void onDeath(BattleDeathEvent event) {
         ArmorHandler.setJetpackFuel(event.getPlayer().getUniqueId(), Long.MAX_VALUE);
 
-        if (event.getBattle().getBattleType().getName().equals("Gun Game") && event.getKiller() != null) {
+        if (event.getBattle() instanceof GunGame && event.getKiller() != null) {
             Gun gun = null;
             for (ItemStack itemStack : event.getKiller().getInventory().getContents()) {
                 if (itemStack != null && Gun.byItemStack(itemStack) != null) {
@@ -171,6 +175,10 @@ public class BattleListener implements Listener {
                 PlayerHandler.clearInventory(event.getKiller());
                 event.getKiller().getInventory().addItem(Gun.byID("pistol").getItemStack());
             }
+        }
+
+        if (event.getBattle() instanceof Chaos && event.getKiller() != null) {
+            ((Chaos) event.getBattle()).giveRandomEquipment(event.getKiller());
         }
     }
 
