@@ -30,9 +30,4 @@ public class GunGame implements Battle {
         PlayerHandler.clearInventory(player);
         player.getInventory().addItem(Gun.byID("pistol").getItemStack());
     }
-
-    @Override
-    public void respawn(Player player) {
-        respawn(player, getRandomSpawnpoint());
-    }
 }
