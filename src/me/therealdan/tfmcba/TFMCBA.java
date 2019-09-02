@@ -9,6 +9,7 @@ import me.therealdan.tfmcba.battles.gungame.GunGameSetup;
 import me.therealdan.tfmcba.battles.team.TeamSetup;
 import me.therealdan.tfmcba.commands.TFMCBACommand;
 import me.therealdan.tfmcba.listeners.BattleListener;
+import me.therealdan.tfmcba.listeners.EquipmentSelector;
 import me.therealdan.tfmcba.listeners.TrashCanListener;
 import me.therealdan.tfmcba.statistics.Statistics;
 import me.therealdan.tfmcba.statistics.StatisticsHandler;
@@ -37,6 +38,7 @@ public class TFMCBA extends JavaPlugin {
         getServer().getPluginManager().registerEvents(StatisticsViewer.getInstance(), this);
         getServer().getPluginManager().registerEvents(new BattleListener(), this);
         getServer().getPluginManager().registerEvents(new TrashCanListener(), this);
+        getServer().getPluginManager().registerEvents(EquipmentSelector.getInstance(), this);
 
         getCommand("TFMCBA").setExecutor(new TFMCBACommand());
     }
