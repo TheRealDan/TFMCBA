@@ -3,7 +3,6 @@ package me.therealdan.tfmcba;
 import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.SetupHandler;
 import me.therealdan.battlearena.util.Icon;
-import me.therealdan.tfmcba.battles.chaos.ChaosSetup;
 import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.ffa.FFASetup;
 import me.therealdan.tfmcba.battles.gungame.GunGame;
@@ -35,7 +34,6 @@ public class TFMCBA extends JavaPlugin {
         BattleType.register(TeamBattle.NAME, Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + TeamBattle.NAME, "&7Team against team"), new TeamBattleSetup());
         BattleType.register(GunGame.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + GunGame.NAME, "&7Unlock better guns by getting kills"), new GunGameSetup());
         BattleType.register(SwordGame.NAME, Icon.build(Material.SHEARS, 0, false, TheForceMC.MAIN + SwordGame.NAME, "&7Unlock better swords by getting kills"), new SwordGameSetup());
-        BattleType.register("Chaos", Icon.build(Material.TNT, 0, false, TheForceMC.MAIN + "Chaos", "&7Unlock better guns by getting kills"), new ChaosSetup());
         SetupHandler.setDefault(BattleType.byName(FFA.NAME).getSetup());
 
         getServer().getPluginManager().registerEvents(StatisticsHandler.getInstance(), this);
