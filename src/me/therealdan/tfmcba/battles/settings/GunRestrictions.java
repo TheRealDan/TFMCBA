@@ -145,6 +145,10 @@ public class GunRestrictions extends Setting {
         return gun.getItemStack(lore);
     }
 
+    public List<String> getDisabled() {
+        return new ArrayList<>(disabled);
+    }
+
     @Override
     public Object clone() {
         GunRestrictions gunRestrictions = new GunRestrictions();
