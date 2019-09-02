@@ -11,9 +11,7 @@ import me.therealdan.tfmcba.battles.gungame.GunGameSetup;
 import me.therealdan.tfmcba.battles.team.TeamBattle;
 import me.therealdan.tfmcba.battles.team.TeamBattleSetup;
 import me.therealdan.tfmcba.commands.TFMCBACommand;
-import me.therealdan.tfmcba.listeners.BattleListener;
-import me.therealdan.tfmcba.listeners.EquipmentSelector;
-import me.therealdan.tfmcba.listeners.TrashCanListener;
+import me.therealdan.tfmcba.listeners.*;
 import me.therealdan.tfmcba.statistics.Statistics;
 import me.therealdan.tfmcba.statistics.StatisticsHandler;
 import me.therealdan.tfmcba.statistics.StatisticsViewer;
@@ -39,9 +37,14 @@ public class TFMCBA extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(StatisticsHandler.getInstance(), this);
         getServer().getPluginManager().registerEvents(StatisticsViewer.getInstance(), this);
-        getServer().getPluginManager().registerEvents(new BattleListener(), this);
-        getServer().getPluginManager().registerEvents(new TrashCanListener(), this);
         getServer().getPluginManager().registerEvents(EquipmentSelector.getInstance(), this);
+
+        getServer().getPluginManager().registerEvents(new BattleListener(), this);
+        getServer().getPluginManager().registerEvents(new FFAListener(), this);
+        getServer().getPluginManager().registerEvents(new TeamBattleListener(), this);
+        getServer().getPluginManager().registerEvents(new GunGameListener(), this);
+
+        getServer().getPluginManager().registerEvents(new TrashCanListener(), this);
 
         getCommand("TFMCBA").setExecutor(new TFMCBACommand());
     }
