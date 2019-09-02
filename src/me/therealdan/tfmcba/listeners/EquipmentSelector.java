@@ -1,5 +1,8 @@
 package me.therealdan.tfmcba.listeners;
 
+import me.therealdan.battlearena.mechanics.battle.Battle;
+import me.therealdan.battlearena.mechanics.setup.Setting;
+import me.therealdan.tfmcba.settings.GunRestrictions;
 import net.theforcemc.TheForceMC;
 import net.theforcemc.equipment.Equipment;
 import net.theforcemc.equipment.armor.Armor;
@@ -108,15 +111,27 @@ public class EquipmentSelector implements Listener {
             return;
         }
 
+        Battle battle = Battle.get(player);
+        GunRestrictions gunRestrictions = null;
+        if (battle != null) {
+            for (Setting setting : battle.getSettings().values()) {
+                if (setting instanceof GunRestrictions) {
+                    gunRestrictions = (GunRestrictions) setting;
+                    break;
+                }
+            }
+        }
+
         List<ItemStack> itemstacks = new ArrayList<>();
         for (Equipment equipment :
                 screen.equals(Screen.RANGED) ? Gun.values(true) :
                         screen.equals(Screen.MELEE) ? Melee.values(true) :
                                 screen.equals(Screen.ARMOR) ? Armor.values(true) : new ArrayList<Equipment>()) {
-            if (equipment.isEnabled()) {
-                if (equipment.isAdminOnly() && !player.isOp()) continue;
-                itemstacks.add(equipment.getItemStack());
-            }
+            if (!equipment.isEnabled()) continue;
+            if (equipment.isAdminOnly() && !player.isOp()) continue;
+            if (gunRestrictions != null && equipment instanceof Gun && !gunRestrictions.isAllowed((Gun) equipment))
+                continue;
+            itemstacks.add(equipment.getItemStack());
         }
 
         int size = 9;
