@@ -6,7 +6,9 @@ import me.therealdan.battlearena.mechanics.arena.Arena;
 import me.therealdan.battlearena.mechanics.battle.Battle;
 import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.Settings;
+import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
+import me.therealdan.tfmcba.listeners.EquipmentSelector;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -23,6 +25,8 @@ public class Team implements Battle {
     public Team(Arena arena, Player started, Party party, Settings settings) {
         init(arena, BattleType.byName("Team"), started, party, settings);
 
+        setSaveRestoreInventory(true);
+
         if (party != null)
             for (Player player : party.getPlayers())
                 add(player, party.isTeam(player, 1));
@@ -36,7 +40,8 @@ public class Team implements Battle {
         String mostKillsTeam = team1Kills >= team2Kills ? "Team 1" : "Team 2";
 
         String battleMessage = null;
-        if (mostKills > 0) battleMessage = BattleArena.SECOND + mostKillsTeam + BattleArena.MAIN + " got the most kills, with " + BattleArena.SECOND + mostKills + BattleArena.MAIN + " kills.";
+        if (mostKills > 0)
+            battleMessage = BattleArena.SECOND + mostKillsTeam + BattleArena.MAIN + " got the most kills, with " + BattleArena.SECOND + mostKills + BattleArena.MAIN + " kills.";
         end(reason, battleMessage);
     }
 
@@ -47,6 +52,9 @@ public class Team implements Battle {
 
     public void add(Player player, boolean team1) {
         if (contains(player)) return;
+
+        PlayerHandler.clearInventory(player);
+        player.getInventory().addItem(EquipmentSelector.getInstance().getEquipmentSelectorItem());
 
         add(player, BattleArena.SECOND + player.getName() + BattleArena.MAIN + " has joined " + BattleArena.SECOND + "Team " + (isTeam1(player) ? "1" : "2"));
 
