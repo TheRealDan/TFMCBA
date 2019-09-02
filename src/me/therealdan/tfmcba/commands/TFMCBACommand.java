@@ -1,7 +1,6 @@
 package me.therealdan.tfmcba.commands;
 
-import me.therealdan.tfmcba.TFMCBA;
-import me.therealdan.tfmcba.listeners.BattleListener;
+import me.therealdan.tfmcba.battlelisteners.BattleListener;
 import me.therealdan.tfmcba.statistics.StatisticsViewer;
 import net.theforcemc.TheForceMC;
 import org.bukkit.Bukkit;
