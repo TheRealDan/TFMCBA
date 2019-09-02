@@ -33,6 +33,15 @@ public class Team implements Battle {
     }
 
     @Override
+    public void second() {
+        if (getGraceTimeRemaining() <= 0) {
+            for (Player player : getPlayers()) {
+                player.getInventory().remove(EquipmentSelector.getInstance().getEquipmentSelectorItem());
+            }
+        }
+    }
+
+    @Override
     public void end(BattleLeaveEvent.Reason reason) {
         int team1Kills = getTotalKills(true);
         int team2Kills = getTotalKills(false);

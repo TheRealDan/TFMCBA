@@ -24,6 +24,15 @@ public class FFA implements Battle {
     }
 
     @Override
+    public void second() {
+        if (getGraceTimeRemaining() <= 0) {
+            for (Player player : getPlayers()) {
+                player.getInventory().remove(EquipmentSelector.getInstance().getEquipmentSelectorItem());
+            }
+        }
+    }
+
+    @Override
     public void add(Player player) {
         add(player, BattleArena.SECOND + player.getName() + BattleArena.MAIN + " has joined the " + BattleArena.SECOND + this.getBattleType().getName());
 
