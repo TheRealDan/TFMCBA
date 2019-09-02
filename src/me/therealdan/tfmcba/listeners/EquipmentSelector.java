@@ -108,27 +108,24 @@ public class EquipmentSelector implements Listener {
             return;
         }
 
-        List<Equipment> equipments = Equipment.values(true);
-        switch (screen) {
-            case RANGED:
-                equipments = new ArrayList<>(Gun.values(true));
-                break;
-            case MELEE:
-                equipments = new ArrayList<>(Melee.values(true));
-                break;
-            case ARMOR:
-                equipments = new ArrayList<>(Armor.values(true));
-                break;
+        List<ItemStack> itemstacks = new ArrayList<>();
+        for (Equipment equipment :
+                screen.equals(Screen.RANGED) ? Gun.values(true) :
+                        screen.equals(Screen.MELEE) ? Melee.values(true) :
+                                screen.equals(Screen.ARMOR) ? Armor.values(true) : new ArrayList<Equipment>()) {
+            if (equipment.isEnabled()) {
+                if (equipment.isAdminOnly() && !player.isOp()) continue;
+                itemstacks.add(equipment.getItemStack());
+            }
         }
 
         int size = 9;
-        while (size < equipments.size() + 1) size += 9;
+        while (size < itemstacks.size() + 1) size += 9;
 
         Inventory inventory = Bukkit.createInventory(null, size, ChatColor.DARK_BLUE + screen.getName());
 
-        for (Equipment equipment : equipments)
-            if (equipment.isEnabled() && !equipment.isAdminOnly())
-                inventory.addItem(equipment.getItemStack());
+        for (ItemStack itemStack : itemstacks)
+            inventory.addItem(itemStack);
 
         inventory.setItem(size - 1, getBackIcon());
 
