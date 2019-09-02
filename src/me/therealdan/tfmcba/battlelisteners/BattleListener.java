@@ -1,8 +1,9 @@
-package me.therealdan.tfmcba.listeners;
+package me.therealdan.tfmcba.battlelisteners;
 
 import me.therealdan.battlearena.events.*;
 import me.therealdan.battlearena.mechanics.lobby.Lobby;
 import me.therealdan.battlearena.mechanics.setup.Setting;
+import me.therealdan.tfmcba.listeners.EquipmentSelector;
 import me.therealdan.tfmcba.settings.GunRestrictions;
 import me.therealdan.tfmcba.settings.Health;
 import net.theforcemc.equipment.armor.ArmorHandler;

@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.listeners;
+package me.therealdan.tfmcba.battlelisteners;
 
 import me.therealdan.battlearena.events.BattleCreateEvent;
 import me.therealdan.battlearena.events.BattleDeathEvent;
