@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.battles.ffa;
+package me.therealdan.tfmcba.battles;
 
 import me.therealdan.battlearena.BattleArena;
 import me.therealdan.battlearena.mechanics.arena.Arena;

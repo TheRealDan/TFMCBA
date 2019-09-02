@@ -3,7 +3,7 @@ package me.therealdan.tfmcba.listeners;
 import me.therealdan.battlearena.events.BattleCreateEvent;
 import me.therealdan.battlearena.events.BattleDeathEvent;
 import me.therealdan.battlearena.util.PlayerHandler;
-import me.therealdan.tfmcba.battles.gungame.GunGame;
+import me.therealdan.tfmcba.battles.GunGame;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.battles.swordgame;
+package me.therealdan.tfmcba.setup;
 
 import me.therealdan.battlearena.mechanics.arena.Arena;
 import me.therealdan.battlearena.mechanics.setup.Settings;
@@ -7,17 +7,20 @@ import me.therealdan.battlearena.mechanics.setup.settings.BattleDuration;
 import me.therealdan.battlearena.mechanics.setup.settings.GracePeriod;
 import me.therealdan.battlearena.mechanics.setup.settings.Map;
 import me.therealdan.battlearena.mechanics.setup.settings.Open;
-import me.therealdan.tfmcba.battles.settings.Competitive;
-import me.therealdan.tfmcba.battles.settings.Health;
+import me.therealdan.tfmcba.battles.TeamBattle;
+import me.therealdan.tfmcba.settings.Competitive;
+import me.therealdan.tfmcba.settings.GunRestrictions;
+import me.therealdan.tfmcba.settings.Health;
 
-public class SwordGameSetup extends Setup {
+public class TeamBattleSetup extends Setup {
 
-    public SwordGameSetup() {
-        super("Sword Game", new Settings(
+    public TeamBattleSetup() {
+        super(TeamBattle.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),
                 new Health(20),
+                new GunRestrictions(),
                 new Competitive(true),
                 new Open(true)
         ));

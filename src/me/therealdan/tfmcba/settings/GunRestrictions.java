@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.battles.settings;
+package me.therealdan.tfmcba.settings;
 
 import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.battlearena.util.Icon;

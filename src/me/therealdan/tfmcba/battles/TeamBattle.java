@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.battles.team;
+package me.therealdan.tfmcba.battles;
 
 import me.therealdan.battlearena.BattleArena;
 import me.therealdan.battlearena.events.BattleLeaveEvent;

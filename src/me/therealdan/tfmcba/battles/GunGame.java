@@ -1,4 +1,4 @@
-package me.therealdan.tfmcba.battles.gungame;
+package me.therealdan.tfmcba.battles;
 
 import me.therealdan.battlearena.BattleArena;
 import me.therealdan.battlearena.mechanics.arena.Arena;
@@ -8,7 +8,7 @@ import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.battlearena.mechanics.setup.Settings;
 import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
-import me.therealdan.tfmcba.battles.settings.GunRestrictions;
+import me.therealdan.tfmcba.settings.GunRestrictions;
 import net.theforcemc.equipment.shootable.gun.Gun;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

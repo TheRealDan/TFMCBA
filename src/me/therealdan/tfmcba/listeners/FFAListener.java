@@ -1,7 +1,7 @@
 package me.therealdan.tfmcba.listeners;
 
 import me.therealdan.battlearena.events.BattleCreateEvent;
-import me.therealdan.tfmcba.battles.ffa.FFA;
+import me.therealdan.tfmcba.battles.FFA;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
