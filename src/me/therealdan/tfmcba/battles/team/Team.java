@@ -8,7 +8,9 @@ import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.Settings;
 import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
+import me.therealdan.tfmcba.TFMCBA;
 import me.therealdan.tfmcba.listeners.EquipmentSelector;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -64,6 +66,7 @@ public class Team implements Battle {
 
         PlayerHandler.clearInventory(player);
         player.getInventory().addItem(EquipmentSelector.getInstance().getEquipmentSelectorItem());
+        Bukkit.getScheduler().scheduleSyncDelayedTask(TFMCBA.getInstance(), () -> EquipmentSelector.getInstance().open(player), 20);
 
         add(player, BattleArena.SECOND + player.getName() + BattleArena.MAIN + " has joined " + BattleArena.SECOND + "Team " + (isTeam1(player) ? "1" : "2"));
 

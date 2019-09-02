@@ -7,7 +7,9 @@ import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.Settings;
 import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
+import me.therealdan.tfmcba.TFMCBA;
 import me.therealdan.tfmcba.listeners.EquipmentSelector;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class FFA implements Battle {
@@ -38,5 +40,6 @@ public class FFA implements Battle {
 
         PlayerHandler.clearInventory(player);
         player.getInventory().addItem(EquipmentSelector.getInstance().getEquipmentSelectorItem());
+        Bukkit.getScheduler().scheduleSyncDelayedTask(TFMCBA.getInstance(), () -> EquipmentSelector.getInstance().open(player), 20);
     }
 }
