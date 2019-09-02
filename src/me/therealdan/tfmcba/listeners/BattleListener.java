@@ -122,6 +122,11 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onDamage(BattleDamageEvent event) {
+        if (EquipmentSelector.getInstance().isOpen(event.getVictim())) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (event.getDamageCause().toString().contains("FIRE")) {
             Player attacker = Bukkit.getPlayer(FlamethrowerHandler.getLastFireDamage(event.getVictim().getUniqueId()));
             event.setAttacker(attacker);
