@@ -4,17 +4,11 @@ import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.SetupHandler;
 import me.therealdan.battlearena.util.Icon;
 import me.therealdan.tfmcba.battlelisteners.*;
-import me.therealdan.tfmcba.battles.FFA;
-import me.therealdan.tfmcba.battles.GunGame;
-import me.therealdan.tfmcba.battles.SwordGame;
-import me.therealdan.tfmcba.battles.TeamBattle;
+import me.therealdan.tfmcba.battles.*;
 import me.therealdan.tfmcba.commands.TFMCBACommand;
 import me.therealdan.tfmcba.listeners.EquipmentSelector;
 import me.therealdan.tfmcba.listeners.TrashCanListener;
-import me.therealdan.tfmcba.setup.FFASetup;
-import me.therealdan.tfmcba.setup.GunGameSetup;
-import me.therealdan.tfmcba.setup.SwordGameSetup;
-import me.therealdan.tfmcba.setup.TeamBattleSetup;
+import me.therealdan.tfmcba.setup.*;
 import me.therealdan.tfmcba.statistics.Statistics;
 import me.therealdan.tfmcba.statistics.StatisticsHandler;
 import me.therealdan.tfmcba.statistics.StatisticsViewer;
@@ -36,6 +30,8 @@ public class TFMCBA extends JavaPlugin {
         BattleType.register(TeamBattle.NAME, Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + TeamBattle.NAME, "&7Team against team"), new TeamBattleSetup());
         BattleType.register(GunGame.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + GunGame.NAME, "&7Unlock better guns by getting kills"), new GunGameSetup());
         BattleType.register(SwordGame.NAME, Icon.build(Material.SHEARS, 0, false, TheForceMC.MAIN + SwordGame.NAME, "&7Unlock better swords by getting kills"), new SwordGameSetup());
+        BattleType.register(Roulette.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + Roulette.NAME, "&7One player gets a pistol, everyone else gets poison knives.", "If the player with the pistol gets a kill a random player is given the pistol.", "If a player with a knife kills the pistol holder, they become the pistol holder."), new RouletteSetup());
+
         SetupHandler.setDefault(BattleType.byName(FFA.NAME).getSetup());
 
         getServer().getPluginManager().registerEvents(StatisticsHandler.getInstance(), this);
@@ -47,6 +43,7 @@ public class TFMCBA extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TeamBattleListener(), this);
         getServer().getPluginManager().registerEvents(new GunGameListener(), this);
         getServer().getPluginManager().registerEvents(new SwordGameListener(), this);
+        getServer().getPluginManager().registerEvents(new RouletteListener(), this);
 
         getServer().getPluginManager().registerEvents(new TrashCanListener(), this);
 
