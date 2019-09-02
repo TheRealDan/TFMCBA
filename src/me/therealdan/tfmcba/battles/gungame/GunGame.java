@@ -63,7 +63,7 @@ public class GunGame implements Battle {
         add(player, BattleArena.SECOND + player.getName() + BattleArena.MAIN + " has joined the " + BattleArena.SECOND + this.getBattleType().getName());
 
         PlayerHandler.clearInventory(player);
-        player.getInventory().addItem(Gun.byID("pistol").getItemStack());
+        player.getInventory().addItem(getNext(player).getItemStack());
     }
 
     public Gun getNext(Player player) {
