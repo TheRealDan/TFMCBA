@@ -9,7 +9,7 @@ import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.gungame.GunGame;
 import me.therealdan.tfmcba.battles.settings.GunRestrictions;
 import me.therealdan.tfmcba.battles.settings.Health;
-import me.therealdan.tfmcba.battles.team.Team;
+import me.therealdan.tfmcba.battles.team.TeamBattle;
 import net.theforcemc.equipment.armor.ArmorHandler;
 import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
 import net.theforcemc.equipment.shootable.gun.Gun;
@@ -50,7 +50,7 @@ public class BattleListener implements Listener {
                 new FFA(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
                 break;
             case "Team":
-                new Team(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
+                new TeamBattle(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
                 break;
             case "Gun Game":
                 new GunGame(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());

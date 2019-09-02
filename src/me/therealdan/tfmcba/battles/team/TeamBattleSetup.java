@@ -11,10 +11,10 @@ import me.therealdan.tfmcba.battles.settings.Competitive;
 import me.therealdan.tfmcba.battles.settings.GunRestrictions;
 import me.therealdan.tfmcba.battles.settings.Health;
 
-public class TeamSetup extends Setup {
+public class TeamBattleSetup extends Setup {
 
-    public TeamSetup() {
-        super(Team.NAME, new Settings(
+    public TeamBattleSetup() {
+        super(TeamBattle.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),

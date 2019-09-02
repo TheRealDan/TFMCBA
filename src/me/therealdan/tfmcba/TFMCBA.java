@@ -8,8 +8,8 @@ import me.therealdan.tfmcba.battles.ffa.FFA;
 import me.therealdan.tfmcba.battles.ffa.FFASetup;
 import me.therealdan.tfmcba.battles.gungame.GunGame;
 import me.therealdan.tfmcba.battles.gungame.GunGameSetup;
-import me.therealdan.tfmcba.battles.team.Team;
-import me.therealdan.tfmcba.battles.team.TeamSetup;
+import me.therealdan.tfmcba.battles.team.TeamBattle;
+import me.therealdan.tfmcba.battles.team.TeamBattleSetup;
 import me.therealdan.tfmcba.commands.TFMCBACommand;
 import me.therealdan.tfmcba.listeners.BattleListener;
 import me.therealdan.tfmcba.listeners.EquipmentSelector;
@@ -32,7 +32,7 @@ public class TFMCBA extends JavaPlugin {
         Statistics.load();
 
         BattleType.register(FFA.NAME, Icon.build(Material.IRON_SWORD, 0, false, TheForceMC.MAIN + FFA.NAME, "&7All against all"), new FFASetup());
-        BattleType.register(Team.NAME, Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + "Team Battle", "&7Team against team"), new TeamSetup());
+        BattleType.register(TeamBattle.NAME, Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + TeamBattle.NAME, "&7Team against team"), new TeamBattleSetup());
         BattleType.register(GunGame.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + GunGame.NAME, "&7Unlock better guns by getting kills"), new GunGameSetup());
         BattleType.register("Chaos", Icon.build(Material.TNT, 0, false, TheForceMC.MAIN + "Chaos", "&7Unlock better guns by getting kills"), new ChaosSetup());
         SetupHandler.setDefault(BattleType.byName(FFA.NAME).getSetup());
