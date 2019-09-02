@@ -173,7 +173,7 @@ public class EquipmentSelector implements Listener {
                     case MELEE:
                         description = "Melee equipments";
                         break;
-                    case FORCE_ABILITIES:
+                    case ARMOR:
                         description = "Armor equipments";
                         break;
                 }
