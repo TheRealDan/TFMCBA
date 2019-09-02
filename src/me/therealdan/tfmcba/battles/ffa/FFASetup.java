@@ -14,7 +14,7 @@ import me.therealdan.tfmcba.battles.settings.Health;
 public class FFASetup extends Setup {
 
     public FFASetup() {
-        super("FFA", new Settings(
+        super(FFA.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),

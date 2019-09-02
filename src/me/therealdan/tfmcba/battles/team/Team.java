@@ -21,11 +21,13 @@ import java.util.UUID;
 
 public class Team implements Battle {
 
+    public final static String NAME = "Team";
+
     private HashSet<UUID> team1 = new HashSet<>();
     private HashSet<UUID> team2 = new HashSet<>();
 
     public Team(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName("Team"), started, party, settings);
+        init(arena, BattleType.byName(Team.NAME), started, party, settings);
 
         setSaveRestoreInventory(true);
 

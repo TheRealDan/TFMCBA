@@ -14,8 +14,10 @@ import org.bukkit.entity.Player;
 
 public class FFA implements Battle {
 
+    public final static String NAME = "FFA";
+
     public FFA(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName("FFA"), started, party, settings);
+        init(arena, BattleType.byName(FFA.NAME), started, party, settings);
 
         setSaveRestoreInventory(true);
 

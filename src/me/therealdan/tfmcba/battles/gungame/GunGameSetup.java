@@ -14,7 +14,7 @@ import me.therealdan.tfmcba.battles.settings.Health;
 public class GunGameSetup extends Setup {
 
     public GunGameSetup() {
-        super("Gun Game", new Settings(
+        super(GunGame.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),

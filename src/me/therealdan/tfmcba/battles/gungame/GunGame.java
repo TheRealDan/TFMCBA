@@ -12,8 +12,10 @@ import org.bukkit.entity.Player;
 
 public class GunGame implements Battle {
 
+    public final static String NAME = "Gun Game";
+
     public GunGame(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName("Gun Game"), started, party, settings);
+        init(arena, BattleType.byName(NAME), started, party, settings);
 
         setSaveRestoreInventory(true);
 

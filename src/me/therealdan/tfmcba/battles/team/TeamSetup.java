@@ -14,7 +14,7 @@ import me.therealdan.tfmcba.battles.settings.Health;
 public class TeamSetup extends Setup {
 
     public TeamSetup() {
-        super("Team", new Settings(
+        super(Team.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),
