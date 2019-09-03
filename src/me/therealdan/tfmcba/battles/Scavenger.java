@@ -6,7 +6,7 @@ import me.therealdan.battlearena.mechanics.battle.Battle;
 import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.Settings;
 import me.therealdan.party.Party;
-import net.theforcemc.equipment.Equipment;
+import net.theforcemc.equipment.Weapon;
 import net.theforcemc.equipment.shootable.gun.Gun;
 import org.bukkit.entity.Player;
 
@@ -18,7 +18,7 @@ public class Scavenger implements Battle {
 
     public final static String NAME = "Scavenger";
 
-    private List<Equipment> equipments = new ArrayList<>();
+    private List<Weapon> weapons = new ArrayList<>();
     private Random random = new Random();
 
     public Scavenger(Arena arena, Player started, Party party, Settings settings) {
@@ -26,9 +26,9 @@ public class Scavenger implements Battle {
 
         setSaveRestoreInventory(true);
 
-        for (Equipment equipment : Equipment.values()) {
-            if (equipment.isEnabled() && !equipment.isAdminOnly()) {
-                equipments.add(equipment);
+        for (Weapon weapon : Weapon.values()) {
+            if (weapon.isEnabled() && !weapon.isAdminOnly()) {
+                weapons.add(weapon);
             }
         }
 
@@ -45,7 +45,7 @@ public class Scavenger implements Battle {
         player.getInventory().addItem(Gun.byID("pistol").getItemStack());
     }
 
-    public Equipment getRandomEquipment() {
-        return equipments.get(random.nextInt(equipments.size()));
+    public Weapon getRandomWeapon() {
+        return weapons.get(random.nextInt(weapons.size()));
     }
 }

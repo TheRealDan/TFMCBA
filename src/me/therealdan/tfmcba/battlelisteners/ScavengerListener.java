@@ -22,7 +22,7 @@ public class ScavengerListener implements Listener {
         Scavenger scavenger = (Scavenger) event.getBattle();
 
         if (event.getKiller() != null) {
-            event.getKiller().getInventory().addItem(scavenger.getRandomEquipment().getItemStack());
+            event.getKiller().getInventory().addItem(scavenger.getRandomWeapon().getItemStack());
         }
     }
 }
