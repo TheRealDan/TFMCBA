@@ -7,7 +7,7 @@ import me.therealdan.battlearena.mechanics.setup.settings.BattleDuration;
 import me.therealdan.battlearena.mechanics.setup.settings.GracePeriod;
 import me.therealdan.battlearena.mechanics.setup.settings.Map;
 import me.therealdan.battlearena.mechanics.setup.settings.Open;
-import me.therealdan.tfmcba.battles.Scavenger;
+import me.therealdan.tfmcba.battles.MysteryWeapon;
 import me.therealdan.tfmcba.settings.Competitive;
 import me.therealdan.tfmcba.settings.GunRestrictions;
 import me.therealdan.tfmcba.settings.Health;
@@ -15,7 +15,7 @@ import me.therealdan.tfmcba.settings.Health;
 public class MysteryWeaponSetup extends Setup {
 
     public MysteryWeaponSetup() {
-        super(Scavenger.NAME, new Settings(
+        super(MysteryWeapon.NAME, new Settings(
                 new Map(Arena.getFree()),
                 new BattleDuration(180),
                 new GracePeriod(0),
