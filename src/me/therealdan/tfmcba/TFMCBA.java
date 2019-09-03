@@ -33,6 +33,7 @@ public class TFMCBA extends JavaPlugin {
         BattleType.register(Roulette.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + Roulette.NAME, "&7One player gets a pistol, everyone else gets poison knives.", "&7If the player with the pistol gets a kill a random player is given the pistol.", "&7If a player with a knife kills the pistol holder, they become the pistol holder."), new RouletteSetup());
         BattleType.register(Scavenger.NAME, Icon.build(Material.IRON_INGOT, 0, false, TheForceMC.MAIN + Scavenger.NAME, "&7Everyone starts with a Pistol", "&7Every kill rewards a random item"), new ScavengerSetup());
         BattleType.register(MysteryWeapon.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + MysteryWeapon.NAME, "&7Always respawn with a different weapon"), new MysteryWeaponSetup());
+        BattleType.register(Hero.NAME, Icon.build(Material.GOLD_PICKAXE, 0, false, TheForceMC.MAIN + Hero.NAME, "&7Hero vs everyone else", "&7Players are given an additional gun on each respawn", "&7When the Hero dies, another is picked"), new HeroSetup());
 
         SetupHandler.setDefault(BattleType.byName(FFA.NAME).getSetup());
 
