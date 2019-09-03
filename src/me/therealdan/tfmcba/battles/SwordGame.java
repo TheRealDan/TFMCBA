@@ -50,7 +50,7 @@ public class SwordGame implements Battle {
     public Melee getNext(Player player) {
         for (ItemStack itemStack : player.getInventory().getContents()) {
             if (itemStack != null && Melee.byItemStack(itemStack) != null) {
-                return Melee.byItemStack(itemStack);
+                return getNext(Melee.byItemStack(itemStack));
             }
         }
         return getNext((Melee) null);

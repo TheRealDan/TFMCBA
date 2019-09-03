@@ -69,7 +69,7 @@ public class GunGame implements Battle {
     public Gun getNext(Player player) {
         for (ItemStack itemStack : player.getInventory().getContents()) {
             if (itemStack != null && Gun.byItemStack(itemStack) != null) {
-                return Gun.byItemStack(itemStack);
+                return getNext(Gun.byItemStack(itemStack));
             }
         }
         return getNext((Gun) null);
