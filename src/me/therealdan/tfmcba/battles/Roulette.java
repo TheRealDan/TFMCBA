@@ -33,7 +33,7 @@ public class Roulette implements Battle {
 
     @Override
     public void second() {
-        if (getGraceTimeRemaining() <= 0) {
+        if (getGraceTimeRemaining() > 0) {
 
             for (Player player : getPlayers()) {
                 if (!hasPoisonKnife(player)) {
