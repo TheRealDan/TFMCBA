@@ -29,7 +29,7 @@ public class FFA implements Battle {
 
     @Override
     public void second() {
-        if (getGraceTimeRemaining() <= 0) {
+        if (!isGracePeriodActive()) {
             for (Player player : getPlayers()) {
                 player.getInventory().remove(EquipmentSelector.getInstance().getEquipmentSelectorItem());
             }
