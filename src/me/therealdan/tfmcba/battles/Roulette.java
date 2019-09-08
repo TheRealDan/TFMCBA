@@ -9,16 +9,22 @@ import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
 import net.theforcemc.equipment.melee.Melee;
 import net.theforcemc.equipment.shootable.gun.Gun;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class Roulette implements Battle {
 
     public final static String NAME = "Roulette";
     private Random random = new Random();
+
+    private UUID lastPistolHolder;
 
     public Roulette(Arena arena, Player started, Party party, Settings settings) {
         init(arena, BattleType.byName(Roulette.NAME), started, party, settings);
@@ -58,9 +64,10 @@ public class Roulette implements Battle {
             }
 
             if (!someoneHasPistol && getPlayers().size() > 0) {
-                Player player = getPlayers().get(random.nextInt(getPlayers().size()));
+                Player player = getRandomPlayer();
                 PlayerHandler.clearInventory(player);
                 player.getInventory().addItem(getPistol().getItemStack());
+                lastPistolHolder = player.getUniqueId();
             }
 
         }
@@ -85,6 +92,14 @@ public class Roulette implements Battle {
             if (getPoisonKnife().is(itemStack)) return true;
         }
         return false;
+    }
+
+    public Player getRandomPlayer() {
+        List<UUID> players = new ArrayList<>();
+        for (Player player : getPlayers()) players.add(player.getUniqueId());
+        players.remove(lastPistolHolder);
+
+        return Bukkit.getPlayer(players.size() > 1 ? players.get(random.nextInt(players.size())) : players.get(0));
     }
 
     public Gun getPistol() {
