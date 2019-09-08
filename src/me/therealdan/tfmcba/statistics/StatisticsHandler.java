@@ -113,7 +113,7 @@ public class StatisticsHandler implements Listener {
         if (Battle.get(player) == null) return;
 
         // Bullets fired
-        Statistics.byPlayer(player).addBulletFired(event.getGun(), 1);
+        Statistics.byPlayer(player).addBulletFired(event.getGun(), event.getGun().getCluster() * event.getGun().getBurst());
     }
 
     public static StatisticsHandler getInstance() {
