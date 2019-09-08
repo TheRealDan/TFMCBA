@@ -41,10 +41,9 @@ public class Scavenger implements Battle {
     @Override
     public void tick() {
         for (Player player : getPlayers()) {
-            Gun gun = Gun.byItemStack(player.getEquipment().getItemInMainHand());
+            Gun gun = Gun.byEntity(player);
             if (gun == null) continue;
-
-
+            player.setLevel((int) remainingAmmo(player, gun));
         }
     }
 
