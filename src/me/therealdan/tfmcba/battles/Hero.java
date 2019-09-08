@@ -10,6 +10,7 @@ import me.therealdan.party.Party;
 import net.theforcemc.TheForceMC;
 import net.theforcemc.equipment.melee.Melee;
 import net.theforcemc.equipment.shootable.gun.Gun;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class Hero implements Battle {
 
@@ -25,6 +27,8 @@ public class Hero implements Battle {
     private Melee lightsaber = Melee.byID("blue_lightsaber");
     private List<Gun> guns = new ArrayList<>();
     private Random random = new Random();
+
+    private UUID lastHero;
 
     public Hero(Arena arena, Player started, Party party, Settings settings) {
         init(arena, BattleType.byName(Hero.NAME), started, party, settings);
@@ -46,9 +50,10 @@ public class Hero implements Battle {
     @Override
     public void second() {
         if (!hasHero()) {
-            Player newHero = getPlayers().get(random.nextInt(getPlayers().size()));
+            Player newHero = getRandomPlayer();
             PlayerHandler.clearInventory(newHero);
             newHero.getInventory().addItem(getLightsaber().getItemStack());
+            lastHero = newHero.getUniqueId();
 
             for (Player player : getPlayers()) {
                 player.sendMessage(TheForceMC.SECOND + newHero.getName() + TheForceMC.MAIN + " is the new Hero!");
@@ -77,6 +82,14 @@ public class Hero implements Battle {
             if (lightsaber.is(itemStack)) return true;
         }
         return false;
+    }
+
+    public Player getRandomPlayer() {
+        List<UUID> players = new ArrayList<>();
+        for (Player player : getPlayers()) players.add(player.getUniqueId());
+        players.remove(lastHero);
+
+        return Bukkit.getPlayer(players.size() > 1 ? players.get(random.nextInt(players.size())) : players.get(0));
     }
 
     public Melee getLightsaber() {
