@@ -57,7 +57,7 @@ public class Roulette implements Battle {
                 }
             }
 
-            if (!someoneHasPistol) {
+            if (!someoneHasPistol && getPlayers().size() > 0) {
                 Player player = getPlayers().get(random.nextInt(getPlayers().size()));
                 PlayerHandler.clearInventory(player);
                 player.getInventory().addItem(getPistol().getItemStack());
