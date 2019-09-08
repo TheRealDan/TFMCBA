@@ -27,7 +27,7 @@ public class SwordGame implements Battle {
 
         meleeOrder.add(Melee.byID("electroblade"));
         meleeOrder.add(Melee.byID("poison_knife"));
-        meleeOrder.add(Melee.byID("warbalde"));
+        meleeOrder.add(Melee.byID("warblade"));
         meleeOrder.add(Melee.byID("cortosis_sword"));
         meleeOrder.add(Melee.byID("zhaboka"));
         meleeOrder.add(Melee.byID("electrostaff"));
