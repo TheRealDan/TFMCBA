@@ -1,11 +1,9 @@
 package me.therealdan.tfmcba.battles;
 
-import me.therealdan.battlearena.BattleArena;
 import me.therealdan.battlearena.mechanics.arena.Arena;
 import me.therealdan.battlearena.mechanics.battle.Battle;
 import me.therealdan.battlearena.mechanics.battle.BattleType;
 import me.therealdan.battlearena.mechanics.setup.Settings;
-import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.party.Party;
 import net.theforcemc.TheForceMC;
 import net.theforcemc.equipment.Weapon;
@@ -45,7 +43,7 @@ public class Scavenger implements Battle {
         for (Player player : getPlayers()) {
             Gun gun = Gun.byItemStack(player.getEquipment().getItemInMainHand());
             if (gun == null) continue;
-            
+
 
         }
     }
@@ -61,14 +59,6 @@ public class Scavenger implements Battle {
                 }
             }
         }
-    }
-
-    @Override
-    public void add(Player player) {
-        add(player, BattleArena.SECOND + player.getName() + BattleArena.MAIN + " has joined the " + BattleArena.SECOND + this.getBattleType().getName());
-
-        PlayerHandler.clearInventory(player);
-        giveWeapon(player);
     }
 
     public void fireBullet(Player player, Gun gun) {

@@ -2,6 +2,7 @@ package me.therealdan.tfmcba.battlelisteners;
 
 import me.therealdan.battlearena.events.BattleCreateEvent;
 import me.therealdan.battlearena.events.BattleDeathEvent;
+import me.therealdan.battlearena.events.BattleJoinEvent;
 import me.therealdan.battlearena.mechanics.battle.Battle;
 import me.therealdan.tfmcba.battles.Scavenger;
 import net.theforcemc.events.GunShootEvent;
@@ -17,6 +18,14 @@ public class ScavengerListener implements Listener {
 
         new Scavenger(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
         event.setCreated(true);
+    }
+
+    @EventHandler
+    public void onJoin(BattleJoinEvent event) {
+        if (!(event.getBattle() instanceof Scavenger)) return;
+        Scavenger scavenger = (Scavenger) event.getBattle();
+
+        scavenger.giveWeapon(event.getPlayer());
     }
 
     @EventHandler
