@@ -1,6 +1,7 @@
 package me.therealdan.tfmcba.battlelisteners;
 
 import me.therealdan.battlearena.events.BattleCreateEvent;
+import me.therealdan.battlearena.events.BattleDamageEvent;
 import me.therealdan.battlearena.events.BattleDeathEvent;
 import me.therealdan.battlearena.util.PlayerHandler;
 import me.therealdan.tfmcba.battles.Roulette;
@@ -16,6 +17,16 @@ public class RouletteListener implements Listener {
 
         new Roulette(event.getArena(), event.getPlayer(), event.getParty(), event.getSettings());
         event.setCreated(true);
+    }
+
+    @EventHandler
+    public void onDamage(BattleDamageEvent event) {
+        if (!(event.getBattle() instanceof Roulette)) return;
+        Roulette roulette = (Roulette) event.getBattle();
+
+        if (roulette.hasPoisonKnife(event.getVictim()) && roulette.hasPoisonKnife(event.getAttacker())) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
