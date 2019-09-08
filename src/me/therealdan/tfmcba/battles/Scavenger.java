@@ -50,7 +50,7 @@ public class Scavenger implements Battle {
     @Override
     public void second() {
         for (Player player : getPlayers()) {
-            if (!ammo.containsKey(player.getUniqueId())) ammo.put(player.getUniqueId(), new HashMap<>());
+            if (!ammo.containsKey(player.getUniqueId())) continue;
             for (String gunID : ammo.get(player.getUniqueId()).keySet()) {
                 Gun gun = Gun.byID(gunID);
                 if (remainingAmmo(player, gun) <= 0) {
