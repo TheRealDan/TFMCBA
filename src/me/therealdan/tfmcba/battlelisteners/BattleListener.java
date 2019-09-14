@@ -11,8 +11,10 @@ import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
 import net.theforcemc.equipment.shootable.gun.Gun;
 import net.theforcemc.events.GunDamageEvent;
 import net.theforcemc.events.GunShootEvent;
+import net.theforcemc.tags.Tag;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +28,6 @@ public class BattleListener implements Listener {
 
     private static BattleListener battleListener;
 
-    private HashMap<UUID, UUID> lastPoisonDamage = new HashMap<>();
     private HashMap<UUID, UUID> lastFallDamage = new HashMap<>();
 
     private HashMap<UUID, HashMap<Integer, ItemStack>> items = new HashMap<>();
@@ -103,9 +104,13 @@ public class BattleListener implements Listener {
             }
         }
 
-        if (event.getDamageCause().equals(EntityDamageEvent.DamageCause.POISON)) {
-            if (lastPoisonDamage.containsKey(event.getVictim().getUniqueId())) {
-                event.setAttacker(Bukkit.getPlayer(lastPoisonDamage.get(event.getVictim().getUniqueId())));
+        if (event.getDamageCause().equals(EntityDamageEvent.DamageCause.WITHER)) {
+            UUID uuid = Tag.getWither(event.getVictim());
+            if (uuid != null) {
+                Entity entity = Bukkit.getEntity(uuid);
+                if (entity instanceof Player) {
+                    event.setAttacker((Player) entity);
+                }
             }
         }
     }
@@ -132,10 +137,6 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onGunDamage(GunDamageEvent event) {
-        if (event.getGun().getID().equalsIgnoreCase("dartgun")) {
-            lastPoisonDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
-        }
-
         if (event.getGun().getKnockback() > 0) {
             lastFallDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
         }
