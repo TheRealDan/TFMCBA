@@ -28,8 +28,6 @@ public class BattleListener implements Listener {
 
     private static BattleListener battleListener;
 
-    private HashMap<UUID, UUID> lastFallDamage = new HashMap<>();
-
     private HashMap<UUID, HashMap<Integer, ItemStack>> items = new HashMap<>();
 
     private boolean canShootInLobby = true;
@@ -98,9 +96,13 @@ public class BattleListener implements Listener {
         }
 
         if (event.getDamageCause().equals(EntityDamageEvent.DamageCause.FALL)) {
-            if (lastFallDamage.containsKey(event.getVictim().getUniqueId())) {
-                event.setAttacker(Bukkit.getPlayer(lastFallDamage.get(event.getVictim().getUniqueId())));
-                lastFallDamage.remove(event.getVictim().getUniqueId());
+            UUID uuid = Tag.getLastKnockback(event.getVictim());
+            if (uuid != null) {
+                Entity entity = Bukkit.getEntity(uuid);
+                if (entity instanceof Player) {
+                    event.setAttacker((Player) entity);
+                    Tag.removeLastKnockback(event.getVictim());
+                }
             }
         }
 
@@ -137,9 +139,6 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onGunDamage(GunDamageEvent event) {
-        if (event.getGun().getKnockback() > 0) {
-            lastFallDamage.put(event.getVictim().getUniqueId(), event.getAttacker().getUniqueId());
-        }
     }
 
     public static void setCanShootInLobby(boolean canShootInLobby) {
