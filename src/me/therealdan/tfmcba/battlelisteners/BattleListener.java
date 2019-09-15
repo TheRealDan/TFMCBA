@@ -6,6 +6,7 @@ import me.therealdan.battlearena.mechanics.setup.Setting;
 import me.therealdan.tfmcba.listeners.EquipmentSelector;
 import me.therealdan.tfmcba.settings.GunRestrictions;
 import me.therealdan.tfmcba.settings.Health;
+import net.theforcemc.TheForceMC;
 import net.theforcemc.equipment.armor.ArmorHandler;
 import net.theforcemc.equipment.shootable.flamethrower.FlamethrowerHandler;
 import net.theforcemc.equipment.shootable.gun.Gun;
@@ -119,6 +120,16 @@ public class BattleListener implements Listener {
 
     @EventHandler
     public void onDeath(BattleDeathEvent event) {
+        if (event.getReason().equals(BattleDeathEvent.Reason.FLEE)) {
+            UUID uuid = Tag.getLastKnockback(event.getPlayer());
+            if (uuid != null && Bukkit.getEntity(uuid) instanceof Player) {
+                Player killer = (Player) Bukkit.getEntity(uuid);
+                event.setReason(BattleDeathEvent.Reason.PLAYER);
+                event.setKiller(killer);
+                event.setBattleMessage(TheForceMC.SECOND + killer.getName() + TheForceMC.MAIN + " threw " + TheForceMC.SECOND + event.getPlayer().getName() + TheForceMC.MAIN + " to their death.");
+            }
+        }
+
         ArmorHandler.setJetpackFuel(event.getPlayer().getUniqueId(), Long.MAX_VALUE);
     }
 
