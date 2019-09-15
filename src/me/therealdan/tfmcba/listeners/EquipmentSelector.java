@@ -93,7 +93,7 @@ public class EquipmentSelector implements Listener {
     }
 
     public void open(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, ChatColor.DARK_BLUE + "Gear Selector");
+        Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, ChatColor.DARK_BLUE + "Equipment Selector");
 
         inventory.addItem(Screen.RANGED.getIcon());
         inventory.addItem(Screen.MELEE.getIcon());
@@ -105,9 +105,27 @@ public class EquipmentSelector implements Listener {
         uiOpen.put(player.getUniqueId(), Screen.MENU);
     }
 
+    public void openArmor(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, ChatColor.DARK_BLUE + "Armor Categories");
+
+        inventory.addItem(Screen.HELMETS.getIcon());
+        inventory.addItem(Screen.CHESTPLATES.getIcon());
+        inventory.addItem(Screen.LEGGINGS.getIcon());
+        inventory.addItem(Screen.BOOTS.getIcon());
+        inventory.addItem(getBackIcon());
+
+        player.openInventory(inventory);
+        uiOpen.put(player.getUniqueId(), Screen.ARMOR);
+    }
+
     public void open(Player player, Screen screen) {
         if (screen.equals(Screen.MENU)) {
             open(player);
+            return;
+        }
+
+        if (screen.equals(Screen.ARMOR)) {
+            openArmor(player);
             return;
         }
 
@@ -122,11 +140,31 @@ public class EquipmentSelector implements Listener {
             }
         }
 
+        List<Equipment> equipments;
+        switch (screen) {
+            case RANGED:
+                equipments = new ArrayList<>(Gun.values(true));
+                break;
+            case MELEE:
+                equipments = new ArrayList<>(Melee.values(true));
+                break;
+            case HELMETS:
+            case CHESTPLATES:
+            case LEGGINGS:
+            case BOOTS:
+                equipments = new ArrayList<>();
+                for (Armor armor : Armor.values(true)) {
+                    if (armor.getItemStack().getType().toString().contains(screen.toString().substring(0, 4))) {
+                        equipments.add(armor);
+                    }
+                }
+                break;
+            default:
+                equipments = new ArrayList<>();
+        }
+
         List<ItemStack> itemstacks = new ArrayList<>();
-        for (Equipment equipment :
-                screen.equals(Screen.RANGED) ? Gun.values(true) :
-                        screen.equals(Screen.MELEE) ? Melee.values(true) :
-                                screen.equals(Screen.ARMOR) ? Armor.values(true) : new ArrayList<Equipment>()) {
+        for (Equipment equipment : equipments) {
             if (!equipment.isEnabled()) continue;
             if (equipment.isAdminOnly() && !player.isOp()) continue;
             if (gunRestrictions != null && equipment instanceof Gun && !gunRestrictions.isAllowed((Gun) equipment))
@@ -173,7 +211,8 @@ public class EquipmentSelector implements Listener {
 
     public enum Screen {
         MENU,
-        RANGED, MELEE, FORCE_ABILITIES, ARMOR, CONSUMABLES;
+        ARMOR, HELMETS, CHESTPLATES, LEGGINGS, BOOTS,
+        RANGED, MELEE, FORCE_ABILITIES, CONSUMABLES;
 
         public ItemStack getIcon() {
             if (!icons.containsKey(this)) {
@@ -187,6 +226,12 @@ public class EquipmentSelector implements Listener {
                         break;
                     case ARMOR:
                         description = "Armor equipments";
+                        break;
+                    case HELMETS:
+                    case CHESTPLATES:
+                    case LEGGINGS:
+                    case BOOTS:
+                        description = "";
                         break;
                 }
                 icons.put(this, Icon.get(this.getMaterial(), 0, this.getName(), description));
@@ -222,7 +267,14 @@ public class EquipmentSelector implements Listener {
                 case FORCE_ABILITIES:
                     return Material.CARROT_STICK;
                 case ARMOR:
+                case CHESTPLATES:
                     return Material.IRON_CHESTPLATE;
+                case HELMETS:
+                    return Material.IRON_HELMET;
+                case LEGGINGS:
+                    return Material.IRON_LEGGINGS;
+                case BOOTS:
+                    return Material.IRON_BOOTS;
                 case CONSUMABLES:
                     return Material.SNOW_BALL;
             }
