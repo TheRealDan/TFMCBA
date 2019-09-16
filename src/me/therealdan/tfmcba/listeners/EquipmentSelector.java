@@ -66,14 +66,11 @@ public class EquipmentSelector implements Listener {
             return;
         }
 
-        if (isOpen(player, Screen.MENU)) {
-            for (Screen screen : Screen.values()) {
-                if (screen.getIcon().isSimilar(event.getCurrentItem())) {
-                    open(player, screen);
-                    return;
-                }
+        for (Screen screen : Screen.values()) {
+            if (screen.getIcon().isSimilar(event.getCurrentItem())) {
+                open(player, screen);
+                return;
             }
-            return;
         }
 
         Equipment equipment = Equipment.byItemStack(event.getCurrentItem());
