@@ -22,7 +22,7 @@ public class Scavenger implements Battle {
     private HashMap<UUID, HashMap<String, Long>> ammo = new HashMap<>();
 
     public Scavenger(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(Scavenger.NAME), started, party, settings);
+        init(arena, BattleType.byName(Scavenger.NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

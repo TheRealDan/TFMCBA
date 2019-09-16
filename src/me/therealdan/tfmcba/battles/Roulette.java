@@ -27,7 +27,7 @@ public class Roulette implements Battle {
     private UUID lastPistolHolder;
 
     public Roulette(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(Roulette.NAME), started, party, settings);
+        init(arena, BattleType.byName(Roulette.NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

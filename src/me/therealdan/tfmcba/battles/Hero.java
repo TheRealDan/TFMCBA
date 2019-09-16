@@ -31,7 +31,7 @@ public class Hero implements Battle {
     private UUID lastHero;
 
     public Hero(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(Hero.NAME), started, party, settings);
+        init(arena, BattleType.byName(Hero.NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

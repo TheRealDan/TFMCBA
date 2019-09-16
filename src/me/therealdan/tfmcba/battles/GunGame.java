@@ -23,7 +23,7 @@ public class GunGame implements Battle {
     private List<Gun> gunsOrder = new ArrayList<>();
 
     public GunGame(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(NAME), started, party, settings);
+        init(arena, BattleType.byName(NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

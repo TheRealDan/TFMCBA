@@ -21,7 +21,7 @@ public class MysteryWeapon implements Battle {
     private Random random = new Random();
 
     public MysteryWeapon(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(MysteryWeapon.NAME), started, party, settings);
+        init(arena, BattleType.byName(MysteryWeapon.NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

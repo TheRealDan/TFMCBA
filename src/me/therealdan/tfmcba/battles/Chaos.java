@@ -21,7 +21,7 @@ public class Chaos implements Battle {
     private static Random random = new Random();
 
     public Chaos(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName("Chaos"), started, party, settings);
+        init(arena, BattleType.byName("Chaos"), started, settings);
 
         setSaveRestoreInventory(true);
 

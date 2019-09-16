@@ -21,7 +21,7 @@ public class SwordGame implements Battle {
     private List<Melee> meleeOrder = new ArrayList<>();
 
     public SwordGame(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(NAME), started, party, settings);
+        init(arena, BattleType.byName(NAME), started, settings);
 
         setSaveRestoreInventory(true);
 

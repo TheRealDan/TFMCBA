@@ -27,7 +27,7 @@ public class TeamBattle implements Battle {
     private HashSet<UUID> team2 = new HashSet<>();
 
     public TeamBattle(Arena arena, Player started, Party party, Settings settings) {
-        init(arena, BattleType.byName(TeamBattle.NAME), started, party, settings);
+        init(arena, BattleType.byName(TeamBattle.NAME), started, settings);
 
         setSaveRestoreInventory(true);
 
