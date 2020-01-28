@@ -37,13 +37,14 @@ public class TrashCanListener implements Listener {
         if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
 
         Player player = event.getPlayer();
-        if (player.getGameMode().equals(GameMode.SURVIVAL) && event.getClickedBlock().getType().equals(Material.ENDER_PORTAL_FRAME)) {
+        if (player.getGameMode().equals(GameMode.SURVIVAL) && event.getClickedBlock().getType().equals(Material.END_PORTAL_FRAME)) {
             player.openInventory(getTrashcan());
         }
     }
 
     private Inventory getTrashcan() {
-        if (trashcan == null) trashcan = Bukkit.createInventory(null, 18, ChatColor.translateAlternateColorCodes('&', "&1Trash Can"));
+        if (trashcan == null)
+            trashcan = Bukkit.createInventory(null, 18, ChatColor.translateAlternateColorCodes('&', "&1Trash Can"));
         return trashcan;
     }
 }

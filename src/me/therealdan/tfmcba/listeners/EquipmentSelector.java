@@ -193,12 +193,12 @@ public class EquipmentSelector implements Listener {
     }
 
     public ItemStack getEquipmentSelectorItem() {
-        if (equipmentSelectorItem == null) equipmentSelectorItem = Icon.get(Material.CHEST, 0, "Equipment Selector");
+        if (equipmentSelectorItem == null) equipmentSelectorItem = Icon.get(Material.CHEST, "Equipment Selector");
         return equipmentSelectorItem;
     }
 
     public ItemStack getBackIcon() {
-        if (backIcon == null) backIcon = Icon.get(Material.BARRIER, 0, "Back", "");
+        if (backIcon == null) backIcon = Icon.get(Material.BARRIER, "Back", "");
         return backIcon;
     }
 
@@ -231,7 +231,7 @@ public class EquipmentSelector implements Listener {
                         description = "";
                         break;
                 }
-                icons.put(this, Icon.get(this.getMaterial(), 0, this.getName(), description));
+                icons.put(this, Icon.get(this.getMaterial(), this.getName(), description));
             }
             return icons.get(this);
         }
@@ -258,11 +258,11 @@ public class EquipmentSelector implements Listener {
         public Material getMaterial() {
             switch (this) {
                 case RANGED:
-                    return Material.GOLD_AXE;
+                    return Material.GOLDEN_AXE;
                 case MELEE:
                     return Material.SHEARS;
                 case FORCE_ABILITIES:
-                    return Material.CARROT_STICK;
+                    return Material.CARROT_ON_A_STICK;
                 case ARMOR:
                 case CHESTPLATES:
                     return Material.IRON_CHESTPLATE;
@@ -273,7 +273,7 @@ public class EquipmentSelector implements Listener {
                 case BOOTS:
                     return Material.IRON_BOOTS;
                 case CONSUMABLES:
-                    return Material.SNOW_BALL;
+                    return Material.SNOWBALL;
             }
             return Material.BARRIER;
         }

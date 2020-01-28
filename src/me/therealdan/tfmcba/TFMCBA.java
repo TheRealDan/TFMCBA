@@ -26,14 +26,14 @@ public class TFMCBA extends JavaPlugin {
 
         Statistics.load();
 
-        BattleType.register(FFA.NAME, Icon.build(Material.IRON_SWORD, 0, false, TheForceMC.MAIN + FFA.NAME, "&7All against all"), new FFASetup());
-        BattleType.register(TeamBattle.NAME, Icon.build(Material.IRON_CHESTPLATE, 0, false, TheForceMC.MAIN + TeamBattle.NAME, "&7Team against team"), new TeamBattleSetup());
-        BattleType.register(GunGame.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + GunGame.NAME, "&7Unlock better guns by getting kills"), new GunGameSetup());
-        BattleType.register(SwordGame.NAME, Icon.build(Material.SHEARS, 0, false, TheForceMC.MAIN + SwordGame.NAME, "&7Unlock better swords by getting kills"), new SwordGameSetup());
-        BattleType.register(Roulette.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + Roulette.NAME, "&7One player gets a pistol, everyone else gets poison knives.", "&7If the player with the pistol gets a kill a random player is given the pistol.", "&7If a player with a knife kills the pistol holder, they become the pistol holder."), new RouletteSetup());
-        BattleType.register(Scavenger.NAME, Icon.build(Material.IRON_INGOT, 0, false, TheForceMC.MAIN + Scavenger.NAME, "&7Everyone starts with a Pistol", "&7Every kill rewards a random item"), new ScavengerSetup());
-        BattleType.register(MysteryWeapon.NAME, Icon.build(Material.GOLD_AXE, 0, false, TheForceMC.MAIN + MysteryWeapon.NAME, "&7Always respawn with a different weapon"), new MysteryWeaponSetup());
-        BattleType.register(Hero.NAME, Icon.build(Material.GOLD_PICKAXE, 0, false, TheForceMC.MAIN + Hero.NAME, "&7Hero vs everyone else", "&7Players are given an additional gun on each respawn", "&7When the Hero dies, another is picked"), new HeroSetup());
+        BattleType.register(FFA.NAME, Icon.build(Material.IRON_SWORD, false, TheForceMC.MAIN + FFA.NAME, "&7All against all"), new FFASetup());
+        BattleType.register(TeamBattle.NAME, Icon.build(Material.IRON_CHESTPLATE, false, TheForceMC.MAIN + TeamBattle.NAME, "&7Team against team"), new TeamBattleSetup());
+        BattleType.register(GunGame.NAME, Icon.build(Material.GOLDEN_AXE, false, TheForceMC.MAIN + GunGame.NAME, "&7Unlock better guns by getting kills"), new GunGameSetup());
+        BattleType.register(SwordGame.NAME, Icon.build(Material.SHEARS, false, TheForceMC.MAIN + SwordGame.NAME, "&7Unlock better swords by getting kills"), new SwordGameSetup());
+        BattleType.register(Roulette.NAME, Icon.build(Material.GOLDEN_AXE, false, TheForceMC.MAIN + Roulette.NAME, "&7One player gets a pistol, everyone else gets poison knives.", "&7If the player with the pistol gets a kill a random player is given the pistol.", "&7If a player with a knife kills the pistol holder, they become the pistol holder."), new RouletteSetup());
+        BattleType.register(Scavenger.NAME, Icon.build(Material.IRON_INGOT, false, TheForceMC.MAIN + Scavenger.NAME, "&7Everyone starts with a Pistol", "&7Every kill rewards a random item"), new ScavengerSetup());
+        BattleType.register(MysteryWeapon.NAME, Icon.build(Material.GOLDEN_AXE, false, TheForceMC.MAIN + MysteryWeapon.NAME, "&7Always respawn with a different weapon"), new MysteryWeaponSetup());
+        BattleType.register(Hero.NAME, Icon.build(Material.GOLDEN_PICKAXE, false, TheForceMC.MAIN + Hero.NAME, "&7Hero vs everyone else", "&7Players are given an additional gun on each respawn", "&7When the Hero dies, another is picked"), new HeroSetup());
 
         SetupHandler.setDefault(BattleType.byName(FFA.NAME).getSetup());
 

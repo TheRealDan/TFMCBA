@@ -1,6 +1,7 @@
 name: TFMCBA
-version: 1.0
+version: "1.0"
 main: me.therealdan.tfmcba.TFMCBA
+api-version: "1.15"
 author: TheRealDan
 
 depend: [TheForceMC, BattleArena]

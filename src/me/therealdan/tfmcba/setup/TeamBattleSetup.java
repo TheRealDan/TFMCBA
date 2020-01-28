@@ -1,6 +1,5 @@
 package me.therealdan.tfmcba.setup;
 
-import me.therealdan.battlearena.mechanics.arena.Arena;
 import me.therealdan.battlearena.mechanics.setup.Settings;
 import me.therealdan.battlearena.mechanics.setup.Setup;
 import me.therealdan.battlearena.mechanics.setup.settings.BattleDuration;
@@ -16,7 +15,7 @@ public class TeamBattleSetup extends Setup {
 
     public TeamBattleSetup() {
         super(TeamBattle.NAME, new Settings(
-                new Map(Arena.getFree()),
+                new Map(),
                 new BattleDuration(180),
                 new GracePeriod(0),
                 new Health(20),

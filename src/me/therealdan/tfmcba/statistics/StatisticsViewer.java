@@ -156,9 +156,9 @@ public class StatisticsViewer implements Listener {
         if (playerIcons.containsKey(player.getUniqueId())) {
             icon = playerIcons.get(player.getUniqueId());
         } else {
-            icon = Icon.build(Material.SKULL_ITEM, 3, false, TheForceMC.MAIN + player.getName());
+            icon = Icon.build(Material.PLAYER_HEAD, false, TheForceMC.MAIN + player.getName());
             SkullMeta skullMeta = (SkullMeta) icon.getItemMeta();
-            skullMeta.setOwner(player.getName());
+            skullMeta.setOwningPlayer(player);
             icon.setItemMeta(skullMeta);
         }
 
@@ -191,13 +191,14 @@ public class StatisticsViewer implements Listener {
 
     private ItemStack getPlayerGunIcon(OfflinePlayer player, Gun gun) {
         ItemStack icon;
-        if (!playerGunIcons.containsKey(player.getUniqueId())) playerGunIcons.put(player.getUniqueId(), new HashMap<>());
+        if (!playerGunIcons.containsKey(player.getUniqueId()))
+            playerGunIcons.put(player.getUniqueId(), new HashMap<>());
         if (playerGunIcons.get(player.getUniqueId()).containsKey(gun.getID())) {
             icon = playerGunIcons.get(player.getUniqueId()).get(gun.getID());
         } else {
-            icon = Icon.build(Material.SKULL_ITEM, 3, false, TheForceMC.MAIN + player.getName() + "'s " + gun.getDisplayName() + TheForceMC.MAIN + " Statistics");
+            icon = Icon.build(Material.PLAYER_HEAD, false, TheForceMC.MAIN + player.getName() + "'s " + gun.getDisplayName() + TheForceMC.MAIN + " Statistics");
             SkullMeta skullMeta = (SkullMeta) icon.getItemMeta();
-            skullMeta.setOwner(player.getName());
+            skullMeta.setOwningPlayer(player);
             icon.setItemMeta(skullMeta);
         }
 
@@ -248,7 +249,8 @@ public class StatisticsViewer implements Listener {
         if (size > 54) size = 54;
 
         if (mainUI == null || update) {
-            if (mainUI == null) mainUI = Bukkit.createInventory(null, size, ChatColor.translateAlternateColorCodes('&', "&1Statistics"));
+            if (mainUI == null)
+                mainUI = Bukkit.createInventory(null, size, ChatColor.translateAlternateColorCodes('&', "&1Statistics"));
 
             mainUI.clear();
             List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());

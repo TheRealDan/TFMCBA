@@ -68,14 +68,14 @@ public class GunRestrictions extends Setting {
         }
 
         ui.setItem(ui.getSize() - 2, getAllIcon());
-        ui.setItem(ui.getSize() - 1, Icon.build(Material.BARRIER, 0, false, "&6Back"));
+        ui.setItem(ui.getSize() - 1, Icon.build(Material.BARRIER, false, "&6Back"));
 
         player.openInventory(ui);
     }
 
     @Override
     public Material getMaterial() {
-        return Material.GOLD_AXE;
+        return Material.GOLDEN_AXE;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class GunRestrictions extends Setting {
     }
 
     private ItemStack getAllIcon() {
-        return Icon.build(Material.GOLD_AXE, 0, false, somethingDisabled() ? "&aEnable All" : "&cDisable All");
+        return Icon.build(Material.GOLDEN_AXE, false, somethingDisabled() ? "&aEnable All" : "&cDisable All");
     }
 
     private ItemStack getIcon(Gun gun) {
