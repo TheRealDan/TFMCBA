@@ -51,6 +51,7 @@ public class TFMCBA extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ScavengerListener(), this);
         getServer().getPluginManager().registerEvents(new MysteryWeaponListener(), this);
         getServer().getPluginManager().registerEvents(new HeroListener(), this);
+        getServer().getPluginManager().registerEvents(new ScoreboardListener(), this);
 
         getServer().getPluginManager().registerEvents(new TrashCanListener(), this);
 
